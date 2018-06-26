@@ -1,0 +1,6 @@
+const config = {
+  token: "", // A bot token.
+  server_name: "", // A server name that bot is connecting.
+  channel_name: "" // A voice chat channel name that bot is connecting.
+}
+module.exports = config
