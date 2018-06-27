@@ -17,5 +17,12 @@ Run script with npm.
 
     npm start
 
-Warning, use your headerphones beacuse this recorder is also echoing back the voice chat.
-To disable it, remove `speaker` usage from the code.
+This will record the voice chat in `out.pcm` and also play the voice chat from the speakers.
+Or, use `node` to pass arguments.
+
+    node main.js -- [-f <file>, --file <file>] [-p, --play]
+
+    -f, --file <file>   Record the voice chat to the <file>
+    -p, --play          Play the voice chat from the speaker.
+
+Warning, use your headerphones when playing the voice chat. Beacuse this it will echo back.

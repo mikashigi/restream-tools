@@ -3,9 +3,13 @@ const fs = require("fs")
 
 const config = require("./config.js")
 
-const client = new discord.Client()
+const program = require("commander");
+program
+  .option("-f, --file <file>", "Record voice chat to the file")
+  .option("-p, --play", "Play voice chat")
+  .parse(process.argv)
 
-const Speaker = require("speaker")
+const client = new discord.Client()
 
 process.on("SIGINT", () => {
     console.log("destroy");
@@ -13,6 +17,8 @@ process.on("SIGINT", () => {
         process.exit()
     })
 })
+
+const Speaker = require("speaker")
 
 client.on("ready", () => {
     console.log("ready")
@@ -28,23 +34,33 @@ client.on("ready", () => {
         // But actually, it's 16-bit.
         // To convert to mp3, use next command.
         // $ ffmpeg -f s16le -ar 48000 -ac 2 -i out.pcm out.mp3
-        const outputStream = fs.createWriteStream("out.pcm")
+        var outputStream
+        if (program.file) {
+            outputStream = fs.createWriteStream(program.file)
+        }
         // NOTE: `speaker` should be created in every spearking time, however there is a bug that
         // when we call `end()`, the app will crash by the illegal instruction.
         // To avoid it, we create speaker once here and not end(), but this will put a bunch of
         // `warning: Didn't have any audio data in callback (buffer underflow)` warning.
         // See <https://github.com/TooTallNate/node-speaker/issues/92> and
         // <https://github.com/TooTallNate/node-speaker/issues/18>.
-        const speaker = new Speaker({
-            channels: 2,
-            bitDepth: 16,
-            sampleRate: 48000
-        })
+        var speaker
+        if (program.play) {
+            speaker = new Speaker({
+                channels: 2,
+                bitDepth: 16,
+                sampleRate: 48000
+            })
+        }
 
         connection.on("disconnect", () => {
             console.log("disconnect")
-            outputStream.end()
-            speaker.end()
+            if (outputStream) {
+                outputStream.end()
+            }
+            if (speaker) {
+                speaker.end()
+            }
         })
 
         const receiver = connection.createReceiver()
@@ -53,8 +69,12 @@ client.on("ready", () => {
                 console.log("listen on: " + user.username)
 
                 const inputStream = receiver.createPCMStream(user)
-                inputStream.pipe(outputStream, {end: false})
-                inputStream.pipe(speaker, {end: false})
+                if (outputStream) {
+                    inputStream.pipe(outputStream, {end: false})
+                }
+                if (speaker) {
+                    inputStream.pipe(speaker, {end: false})
+                }
 
                 inputStream.on("end", () => {
                     console.log("listen off: " + user.username)
