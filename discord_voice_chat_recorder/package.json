@@ -9,6 +9,7 @@
     "opusscript": "^0.0.6",
     "erlpack": "discordapp/erlpack",
     "libsodium-wrappers": "^0.7.3",
-    "uws": "^9.14.0"
+    "uws": "^9.14.0",
+    "speaker": "^0.4.1"
   }
 }
