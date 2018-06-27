@@ -5,8 +5,8 @@ const config = require("./config.js")
 
 const program = require("commander");
 program
-  .option("-f, --file <file>", "Record voice chat to the file")
-  .option("-p, --play", "Play voice chat")
+  .option("-f, --file <file>", "Record the voice chat to the file")
+  .option("-p, --play", "Play the voice chat from the speakers")
   .parse(process.argv)
 
 const client = new discord.Client()
