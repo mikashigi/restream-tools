@@ -12,4 +12,4 @@ Mostly for my personal use.
 
     A simple screen that shows RPGLimitBreak original stream with Japanese restreaming chat for commentators.
     This exists in `gh-pages` branch, not `master` branch.
-    You can use it here at <https://mikashigi.github.io/restream-tools/commentator.html>.
+    You can use it here at <https://mikashigi.github.io/restream-tools/commentator/rpglimitbreak.html>.
