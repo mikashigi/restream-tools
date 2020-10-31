@@ -8,8 +8,12 @@ Mostly for my personal use.
 
     A simple voice chat recorder bot. For testing the mic and voice chat configurarion.
 
- * `commentator.html`
+ * `commentator`
 
-    A simple screen that shows RPGLimitBreak original stream with Japanese restreaming chat for commentators.
-    This exists in `gh-pages` branch, not `master` branch.
-    You can use it here at <https://mikashigi.github.io/restream-tools/commentator/rpglb.html>.
+Japanese Restreamのチャットと、海外の配信を合わせて見るやつです。
+
+https://mikashigi.github.io/restream-tools/commentator/rpglb.html
+
+https://mikashigi.github.io/restream-tools/commentator/gdq.html
+
+https://mikashigi.github.io/restream-tools/commentator/mwss.html
