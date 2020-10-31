@@ -1,0 +1,35 @@
+<html>
+<head>
+<style>
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+#gdq-twitch-embed {
+  width: 80%;
+  height: 100%;
+  float: left;
+}
+#jp-restream-chat-embed {
+  width: 20%;
+  height: 100%;
+  float: right;
+}
+</style>
+</head>
+<body>
+<div id="gdq-twitch-embed"></div>
+<iframe frameborder="0" scrolling="no" id="jp-restream-chat-embed" src="https://www.twitch.tv/embed/japanese_restream/chat?parent=mikashigi%2Egithub%2Eio"></iframe>
+<script src="https://embed.twitch.tv/embed/v1.js"></script>
+<script type="text/javascript">
+new Twitch.Embed("gdq-twitch-embed", {
+  width: "100%",
+  height: "100%",
+  layout: "video", // Use channel to show chat for rpglimitbreak stream.
+  channel: "rpglimitbreak"
+})
+</script>
+</body>
+</html>
